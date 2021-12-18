@@ -18,7 +18,7 @@ def main(argv=sys.argv[1:]):
     args = arg_parser.parse_args(argv)
     try:
         if args.command == "init":
-            cmd_init(args)
+            cmd_init()
         elif args.command == "ls":
             cmd_ls(args)
     except Exception as e:
