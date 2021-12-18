@@ -11,7 +11,8 @@ def initialize_log_file(file_name):
 
     title = file_basename(file_path)
     json_data = {
-        TITLE: title
+        TITLE: title,
+        LOGS: []
     }
 
     dump_to_file(file_path, json_data)
@@ -22,6 +23,12 @@ def append_to_file(file_name, text):
     file_path = prepare_file_path(file_name)
     assert_exists(file_path)
     json_data = read_json_from_file(file_path)
-    json_data.setdefault(LOGS, []).append(text)
+    json_data[LOGS].append(text)
     dump_to_file(file_path, json_data)
 
+
+def print_logs_from_file(file_name):
+    file_path = prepare_file_path(file_name)
+    assert_exists(file_path)
+    json_data = read_json_from_file(file_path)
+    print(*json_data[LOGS], sep='\n')

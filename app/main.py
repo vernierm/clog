@@ -4,6 +4,7 @@ import sys
 from app.commands.cmd_create import cmd_create
 from app.commands.cmd_init import cmd_init
 from app.commands.cmd_ls import cmd_ls
+from app.commands.cmd_read import cmd_read
 from app.commands.cmd_write import cmd_write
 from app.util.const import COMMON
 
@@ -24,6 +25,10 @@ write_parser.add_argument('-n', '--name', nargs='?', help='representing the file
                           default=COMMON)
 write_parser.add_argument('text', nargs='?', help='representing the log input')
 
+read_parser = arg_subparsers.add_parser(name='read', help='Prints logs from specified log file')
+read_parser.add_argument('-n', '--name', nargs='?', help='representing the file name',
+                         default=COMMON)
+
 
 def main():
     argv = sys.argv[1:]
@@ -37,5 +42,7 @@ def main():
             cmd_create(args.name)
         elif args.command == 'write':
             cmd_write(args.name, args.text)
+        elif args.command == 'read':
+            cmd_read(args.name)
     except Exception as e:
         print('failed to execute command because: {}'.format(e))
