@@ -1,3 +1,4 @@
+import glob
 import json
 from os import path
 
@@ -19,6 +20,10 @@ def initialize_log_file(file_name):
     with open(file_path, "w") as f:
         json.dump(data, f)
     print('initialized log file: {}'.format(title))
+
+
+def list_log_file_names():
+    return [file_basename(f) for f in glob.glob(BASE_DIR_PATH + '/*.json')]
 
 
 def file_basename(file_path):

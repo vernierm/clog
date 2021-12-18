@@ -20,6 +20,6 @@ def main(argv=sys.argv[1:]):
         if args.command == "init":
             cmd_init()
         elif args.command == "ls":
-            cmd_ls(args)
+            cmd_ls()
     except Exception as e:
         print('failed to execute command because: {}'.format(e))
