@@ -9,9 +9,8 @@ Check `help` for more options.
 
 ### init
 Start by running `clog init`. 
-A config file(`~/.clogconfig`) will be created.
 
-Additionally, creates a base directory where log files will be stored, and a common log file inside.
+Creates a base directory(`~/.clog`) where log files will be stored, and a common log file inside.
 
 ### ls
 Lists all log files found in the base directory.
