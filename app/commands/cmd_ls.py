@@ -1,4 +1,4 @@
-from app.util.logging import list_log_file_names
+from app.util.file_util import list_log_file_names
 
 
 def cmd_ls():

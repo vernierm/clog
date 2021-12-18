@@ -1,31 +1,27 @@
-import glob
-import json
-from os import path
+from app.util.file_util import prepare_file_path, assert_not_exists, file_basename, assert_exists, dump_to_file, \
+    read_json_from_file
 
-from app.util.const import BASE_DIR_PATH
-
-JSON_EXTENSION = '.json'
+LOGS = 'logs'
 TITLE = 'title'
 
 
 def initialize_log_file(file_name):
-    file_path = path.join(BASE_DIR_PATH, file_name + JSON_EXTENSION)
-    assert not path.exists(file_path), 'file already exists: {}'.format(file_path)
+    file_path = prepare_file_path(file_name)
+    assert_not_exists(file_path)
 
     title = file_basename(file_path)
-    data = {
+    json_data = {
         TITLE: title
     }
 
-    with open(file_path, "w") as f:
-        json.dump(data, f)
+    dump_to_file(file_path, json_data)
     print('initialized log file: {}'.format(title))
 
 
-def list_log_file_names():
-    return [file_basename(f) for f in glob.glob(BASE_DIR_PATH + '/*.json')]
+def append_to_file(file_name, text):
+    file_path = prepare_file_path(file_name)
+    assert_exists(file_path)
+    json_data = read_json_from_file(file_path)
+    json_data.setdefault(LOGS, []).append(text)
+    dump_to_file(file_path, json_data)
 
-
-def file_basename(file_path):
-    basename = path.basename(file_path)
-    return path.splitext(basename)[0]
