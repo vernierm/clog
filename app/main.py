@@ -45,4 +45,4 @@ def main():
         elif args.command == 'read':
             cmd_read(args.name)
     except Exception as e:
-        print('failed to execute command because: {}'.format(e))
+        print('error: {}'.format(e))

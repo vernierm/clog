@@ -11,6 +11,10 @@ def list_log_file_names():
     return [file_basename(f) for f in glob.glob(BASE_DIR_PATH + '/*' + JSON_EXTENSION)]
 
 
+def assert_base_dir_exists():
+    assert path.exists(BASE_DIR_PATH), 'clog not initialized, use \'clog init\''
+
+
 def assert_not_exists(file_path):
     assert not path.exists(file_path), 'file already exists: {}'.format(file_path)
 
