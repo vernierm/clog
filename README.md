@@ -26,4 +26,13 @@ Reads from the specified log files.
 
 ## How to install
 
-TODO
+Clone this repo locally.
+`git clone https://github.com/vernierm/clog.git`
+
+Position in the cloned repo.
+
+Make `clog` file executable.
+`chmod +x clog`
+
+Add repo path to your PATH environment variable, so you can run it from anywhere.
+`export PATH=$PATH:/path/to/cloned/repo`
